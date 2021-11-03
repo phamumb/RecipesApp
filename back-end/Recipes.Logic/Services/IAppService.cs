@@ -6,5 +6,7 @@ namespace Recipes.Logic.Services
     {
         bool CheckTables();
         RecipeDomain GetSingle(long id);
+        bool CreateNewRecipe(RecipeDomain model);
+        bool AddNewIngredient(IngredientDomain model);
     }
 }

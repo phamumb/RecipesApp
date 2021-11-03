@@ -18,6 +18,20 @@ namespace Recipes.Logic.Services
             return _context.Recipes.Where(x => x.id == id).FirstOrDefault();
         }
 
+        public bool CreateNewRecipe(RecipeDomain model)
+        {
+            _context.Recipes.Add(model);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool AddNewIngredient(IngredientDomain model)
+        {
+            _context.Ingredients.Add(model);
+            _context.SaveChanges();
+            return true;
+        }
+
         public bool CheckTables()
         {
             _context.Database.EnsureCreated();
