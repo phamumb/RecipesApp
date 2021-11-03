@@ -6,10 +6,13 @@ namespace Recipes.Repository.Domain
     public class IngredientDomain
     {
         [Key]
-        public long id {get; set;}
+        public long id { get; set; }
         [ForeignKey("RecipeId")]
-        public long RecipeId {get; set;}
-        public string Amount {get; set;}
-        public string Unit {get; set;}
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public string Note { get; set; }
+        public string Unit { get; set; }
+        public byte[] FileContent { get; set; }
+        public string ImageUrl {get; set;}
     }
 }

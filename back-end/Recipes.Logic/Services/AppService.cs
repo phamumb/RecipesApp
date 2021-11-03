@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Recipes.Repository.Context;
@@ -11,6 +12,11 @@ namespace Recipes.Logic.Services
         public AppService(AppContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<RecipeDomain> GetAllRecipes()
+        {
+            return _context.Recipes.Where(x => x.IsDeleted == false);
         }
 
         public RecipeDomain GetSingle(long id)
@@ -32,7 +38,12 @@ namespace Recipes.Logic.Services
             return true;
         }
 
-        public bool CheckTables()
+        public IEnumerable<IngredientDomain> GetAllIngredients()
+        {
+            return _context.Ingredients.Where(x => true);
+        }
+
+        public bool CreateTables()
         {
             _context.Database.EnsureCreated();
             return true;

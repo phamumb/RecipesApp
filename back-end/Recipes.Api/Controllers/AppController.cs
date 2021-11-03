@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Recipes.Logic.Services;
 using Recipes.Repository.Domain;
@@ -14,6 +15,14 @@ namespace Recipes.Api.Controllers
             _appService = appService;
         }
 
+        // Recipes
+
+        [HttpGet]
+        public IEnumerable<RecipeDomain> GetAllRecipes()
+        {
+            return _appService.GetAllRecipes();
+        }
+
         [HttpGet]
         public RecipeDomain GetSingleRecipe(long id)
         {
@@ -26,16 +35,24 @@ namespace Recipes.Api.Controllers
             return _appService.CreateNewRecipe(model);
         }
 
+        // Ingredients
+
         [HttpPost]
-        public bool AddNewIngredient(IngredientDomain model)
+        public bool AddNewIngredient([FromBody]IngredientDomain model)
         {
             return _appService.AddNewIngredient(model);
         }
 
         [HttpGet]
+        public IEnumerable<IngredientDomain> GetAllIngredients()
+        {
+            return _appService.GetAllIngredients();
+        }
+
+        [HttpGet]
         public void Check()
         {
-            _appService.CheckTables();
+            _appService.CreateTables();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Recipes.Api
         {
             var dbServerVersion = new MySqlServerVersion(new Version(8, 0, 26));
             services.AddDbContext<Repository.Context.AppContext>(options => 
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), dbServerVersion)
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), dbServerVersion, b => b.MigrationsAssembly("Recipes.Api"))
                     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
                     .EnableSensitiveDataLogging()
                     .EnableSensitiveDataLogging()
@@ -50,10 +50,15 @@ namespace Recipes.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Recipes.Api v1"));
             }
+            // cores
+            app.UseCors(x => x
+                .AllowAnyHeader()                
+                .AllowAnyOrigin()
+                .AllowAnyMethod());
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseRouting();        
 
             app.UseAuthorization();
 

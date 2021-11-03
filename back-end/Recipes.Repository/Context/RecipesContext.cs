@@ -20,7 +20,7 @@ namespace Recipes.Repository.Context
             });
             modelBuilder.Entity<IngredientDomain>(entity => {
                 entity.HasKey(e => e.id);
-                entity.Property(e => e.Amount);
+                entity.Property(e => e.Unit);
             });
         }
     }
