@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,8 +9,8 @@ namespace Recipes.Logic.Services
 {
     public class AppService : IAppService
     {
-        private readonly AppContext _context;
-        public AppService(AppContext context)
+        private readonly Repository.Context.AppContext _context;
+        public AppService(Repository.Context.AppContext context)
         {
             _context = context;
         }
@@ -24,10 +25,11 @@ namespace Recipes.Logic.Services
             return _context.Recipes.Where(x => x.id == id).FirstOrDefault();
         }
 
-        public bool CreateNewRecipe(RecipeDomain model)
+        public bool CreateNewRecipes(RecipeDomain model)
         {
             _context.Recipes.Add(model);
             _context.SaveChanges();
+            Console.WriteLine(model.id);
             return true;
         }
 

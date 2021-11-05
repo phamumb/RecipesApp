@@ -30,9 +30,9 @@ namespace Recipes.Api.Controllers
         }
 
         [HttpPost]
-        public bool CreateNewRecipe(RecipeDomain model)
+        public bool CreateNewRecipes(RecipeDomain model)
         {
-            return _appService.CreateNewRecipe(model);
+            return _appService.CreateNewRecipes(model);
         }
 
         // Ingredients

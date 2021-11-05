@@ -1,3 +1,4 @@
+import { RecipesContextService } from './../../services/recipes-context.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,7 +9,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CreateRecipesModalComponent implements OnInit {
   @ViewChild('modal') modal: any;
-  constructor(public modalService: NgbModal) { }
+  model: any = {}
+  constructor(public modalService: NgbModal, private context: RecipesContextService) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +21,12 @@ export class CreateRecipesModalComponent implements OnInit {
     }, (res) => {
       console.log(res)
     });
+  }
+
+  create(){
+    this.context.createRecipes(this.model).subscribe(id => {
+      console.log(id);
+    })
   }
 
 }

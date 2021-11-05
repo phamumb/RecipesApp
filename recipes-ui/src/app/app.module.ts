@@ -19,6 +19,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
 import { IngredientModalComponent } from './modals/ingredient-modal/ingredient-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
+import { MenuItem } from 'primeng/api';                  //api
+import { StepsModule } from 'primeng/steps';
+import { RecipesEditPageComponent } from './pages/recipes-edit-page/recipes-edit-page.component';
 
 @NgModule({
   declarations: [
@@ -34,14 +39,18 @@ import { IngredientModalComponent } from './modals/ingredient-modal/ingredient-m
     RecipesListComponent,
     CreateRecipesModalComponent,
     IngredientListComponent,
-    IngredientModalComponent
+    IngredientModalComponent,
+    RecipesEditPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    AccordionModule,
+    StepsModule
   ],
   providers: [
     AppApiService

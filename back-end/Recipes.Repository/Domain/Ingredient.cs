@@ -12,7 +12,6 @@ namespace Recipes.Repository.Domain
         public string Location { get; set; }
         public string Note { get; set; }
         public string Unit { get; set; }
-        public byte[] FileContent { get; set; }
         public string ImageUrl {get; set;}
     }
 }

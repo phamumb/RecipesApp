@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class IngredientListComponent implements OnInit {
   @ViewChild('modal') modal: IngredientModalComponent | undefined;
+  amount: string = '';
   ingredients$: Observable<any>;
   constructor(private context: IngredientContextService) {
     this.ingredients$ = this.context.ingredients$;

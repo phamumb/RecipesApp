@@ -14,4 +14,8 @@ export class RecipesContextService {
       this.recipes$.next(recipes);
     })
   }
+
+  createRecipes(model: any){
+    return this.api.createRecipes(model);
+  }
 }

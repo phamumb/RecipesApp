@@ -8,12 +8,13 @@
       <div class="container">
           <div class="row">
               <div class="col">
-                  
+                  <input type="text" [(ngModel)]="model.name"/>
               </div>
           </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+      <button type="button" class="btn btn-warning" (click)="modal.close('Save click')">Close</button>
+      <button type="button" class="btn btn-primary" (click)="create()">Create</button>
     </div>
   </ng-template>

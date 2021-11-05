@@ -7,7 +7,7 @@ namespace Recipes.Logic.Services
     {
         bool CreateTables();
         RecipeDomain GetSingle(long id);
-        bool CreateNewRecipe(RecipeDomain model);
+        bool CreateNewRecipes(RecipeDomain model);
         bool AddNewIngredient(IngredientDomain model);
         IEnumerable<RecipeDomain> GetAllRecipes();
         IEnumerable<IngredientDomain> GetAllIngredients();

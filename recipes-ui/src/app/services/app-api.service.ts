@@ -11,6 +11,7 @@ export class AppApiService {
   private url = `${this.appApi}${this.root}`;
   constructor(private http: HttpClient) { }
 
+  // Recipes
   getAllRecipes(){
     return this.http.get(`${this.url}/GetAllRecipes`)
   }
@@ -19,6 +20,11 @@ export class AppApiService {
     return this.http.get(`${this.url}/GetAllIngredients`)
   }
 
+  createRecipes(model: any){
+    return this.http.post(`${this.url}/CreateNewRecipes`, model)
+  }
+
+  // Ingredients
   createNewIngredient(model: any){
     return this.http.post(`${this.url}/AddNewIngredient`, model);
   }
