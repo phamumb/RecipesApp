@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class IngredientContextService {
-  ingredients$ = new BehaviorSubject<any>([]);
+  list$ = new BehaviorSubject<any>([]);
   constructor(private api: AppApiService) { }
 
   createNewIngredient(model: any){
@@ -15,7 +15,7 @@ export class IngredientContextService {
 
   getAllIngredients(){
     this.api.getAllIngredient().subscribe(ingredients => {
-      this.ingredients$.next(ingredients);
+      this.list$.next(ingredients);
     })
   }
 }

@@ -2,7 +2,7 @@
 
 namespace Recipes.Api.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class DefaultValue : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,0 +1,33 @@
+.recipes-container {
+    .name-box {
+        bottom: 80px;
+        width: 80%;
+        height: 80px;
+        background-color: rgba(255, 255, 255, 0.4);
+        position: relative;
+        color: black;
+    }
+
+    .ingredients {
+        ul {
+            list-style: none;
+            color: gray;
+            li::before {
+                content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+                color: rgb(252, 177, 73); /* Change the color */
+                font-weight: bold; /* If you want it to be bold */
+                display: inline-block; /* Needed to add space between the bullet and the text */
+                width: 1em; /* Also needed for space (tweak if needed) */
+                margin-left: -1em; /* Also needed for space (tweak if needed) */
+            }
+        }
+    }
+
+    .instructions {
+        p {
+            color: gray;
+            font-size: 12;
+            font-weight: 400;
+        }
+    }
+}

@@ -27,7 +27,7 @@ namespace Recipes.Api
         public void ConfigureServices(IServiceCollection services)
         {
             var dbServerVersion = new MySqlServerVersion(new Version(8, 0, 26));
-            services.AddDbContext<Repository.Context.AppContext>(options => 
+            services.AddDbContext<Repository.Context.RecipesContext>(options => 
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), dbServerVersion, b => b.MigrationsAssembly("Recipes.Api"))
                     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
                     .EnableSensitiveDataLogging()

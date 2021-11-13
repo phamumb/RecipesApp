@@ -2,13 +2,13 @@
 
 namespace Recipes.Api.Migrations
 {
-    public partial class AddImageUrl : Migration
+    public partial class ImageUrl : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
                 name: "ImageUrl",
-                table: "Ingredients",
+                table: "Recipes",
                 type: "longtext",
                 nullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -18,7 +18,7 @@ namespace Recipes.Api.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "ImageUrl",
-                table: "Ingredients");
+                table: "Recipes");
         }
     }
 }

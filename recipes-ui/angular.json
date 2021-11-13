@@ -32,14 +32,17 @@
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/@fortawesome/fontawesome-free/js/brands.js",
               "node_modules/@fortawesome/fontawesome-free/js/solid.js",
-              "node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"
+              "node_modules/@fortawesome/fontawesome-free/js/fontawesome.js",
+              "node_modules/quill/dist/quill.js"
             ]
           },
           "configurations": {

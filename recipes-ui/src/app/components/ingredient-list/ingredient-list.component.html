@@ -1,17 +1,17 @@
 <div class="container-fluid p-2">
     <button class="btn btn-primary float-left mb-2" (click)="openModal()">New Ingredient</button><br>
-    <div class="d-inline-flex">
-        <div class="card rounded-3 shadow-sm border-0 me-3" style="width: 16rem;" *ngFor="let item of ingredients$ | async">
+      <div class="d-inline-flex" *ngFor="let item of items$ | async">
+        <div class="card rounded-3 shadow-sm border-0 me-3" style="width: 16rem;" *ngFor="let ingredient of item.ingredients">
           <div class="card-body">
             <div class="float-right" style="width: 100%;">
             </div>
-            <img src="{{item.imageUrl}}" class="card-img-top">
-            <h5 class="card-title">{{item.name}}</h5>
+            <img src="{{ingredient.imageUrl}}" class="card-img-top">
+            <h5 class="card-title">{{ingredient.name}}</h5>
             <p class="card-text">
-                {{item.note}}
+                {{ingredient.note}}
             </p>
           </div>
         </div>
-    </div>
+      </div>
 </div>
 <app-ingredient-modal #modal></app-ingredient-modal>

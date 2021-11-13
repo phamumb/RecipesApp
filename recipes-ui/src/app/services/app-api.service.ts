@@ -6,26 +6,47 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AppApiService {
-  private root = '/App';
+  private root = '/Recipes';
   private appApi = environment.appApi;
   private url = `${this.appApi}${this.root}`;
   constructor(private http: HttpClient) { }
 
   // Recipes
-  getAllRecipes(){
+  getAllRecipes() {
     return this.http.get(`${this.url}/GetAllRecipes`)
   }
 
-  getAllIngredient(){
+  getAllIngredient() {
     return this.http.get(`${this.url}/GetAllIngredients`)
   }
 
-  createRecipes(model: any){
+  getSingleRecipes(id: number) {
+    return this.http.get(`${this.url}/GetSingleRecipes?id=${id}`);
+  }
+
+  createRecipes(model: any) {
     return this.http.post(`${this.url}/CreateNewRecipes`, model)
   }
 
+  addRecipesIngredients(model) {
+    return this.http.post(`${this.url}/AddRecipesIngredients`, model);
+  }
+
+  getRecipesIngredients(id: number) {
+    return this.http.get(`${this.url}/GetRecipesIngredients?recipesId=${id}`);
+  }
+
+  updateRecipes(model: any) {
+    return this.http.post(`${this.url}/UpdateRecipes`, model);
+  }
+
   // Ingredients
-  createNewIngredient(model: any){
+  createNewIngredient(model: any) {
     return this.http.post(`${this.url}/AddNewIngredient`, model);
+  }
+
+  // Cart
+  addToCart(model: any) {
+    return this.http.post(`${this.url}/AddToCart`, model);
   }
 }

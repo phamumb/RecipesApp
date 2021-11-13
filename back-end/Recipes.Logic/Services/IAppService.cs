@@ -6,10 +6,13 @@ namespace Recipes.Logic.Services
     public interface IAppService
     {
         bool CreateTables();
-        RecipeDomain GetSingle(long id);
-        bool CreateNewRecipes(RecipeDomain model);
+        RecipesDomain GetSingleRecipes(long id);
+        bool CreateNewRecipes(RecipesDomain model);
         bool AddNewIngredient(IngredientDomain model);
-        IEnumerable<RecipeDomain> GetAllRecipes();
-        IEnumerable<IngredientDomain> GetAllIngredients();
+        IEnumerable<RecipesDomain> GetAllRecipes();
+        dynamic GetAllIngredients();
+        bool AddRecipesIngredients(IEnumerable<RecipesIngredientDomain> model);
+        IEnumerable<RecipesIngredientDomain> GetRecipesIngredients(long recipesId);
+        bool UpdateRecipes(RecipesDomain model);
     }
 }

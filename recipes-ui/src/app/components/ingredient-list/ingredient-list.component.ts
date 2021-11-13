@@ -11,9 +11,9 @@ import { Observable } from 'rxjs';
 export class IngredientListComponent implements OnInit {
   @ViewChild('modal') modal: IngredientModalComponent | undefined;
   amount: string = '';
-  ingredients$: Observable<any>;
+  items$: Observable<any>;
   constructor(private context: IngredientContextService) {
-    this.ingredients$ = this.context.ingredients$;
+    this.items$ = this.context.list$;
   }
 
   ngOnInit(): void {

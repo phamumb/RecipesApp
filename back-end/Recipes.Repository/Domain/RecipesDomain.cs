@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Recipes.Repository.Domain
 {
-    public class RecipeDomain
+    public class RecipesDomain
     {
         public string Name { get; set; }
         public string Instructions { get; set; }
@@ -11,7 +12,9 @@ namespace Recipes.Repository.Domain
         // public IEnumerable<Ingredient> Ingredients {get; set;}
         [Key]
         public long id { get; set; }
-        public bool? IsDeleted { get; set; }
-        public virtual ICollection<IngredientDomain> Ingredients { get; set; }
+        public bool? IsDeleted { get; set; } = false;
+        public string ImageUrl { get; set; }
+        public string Test { get; set; }
+        public ICollection<IngredientDomain> Ingredients { get; set; }
     }
 }
