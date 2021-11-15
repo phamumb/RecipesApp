@@ -2,14 +2,7 @@
     <div class="col">
         <div class="recipes-container">
             <img [src]="recipes.imageUrl" class="card-img-top">
-            <div class="name-box">
-                <h2>{{recipes.name}}</h2>
-            </div>
-            <div class="d-flex flex-row m-2 justify-content-evenly">
-                <app-recipes-detail-icon *ngFor="let icon of context.icons"
-                [backgroundColor]="icon.backgroundColor" [icon]="icon.icon" [iconColor]="icon.color"
-                ></app-recipes-detail-icon>
-            </div>
+                <span class="fs-1 name text-wrap">{{recipes.name}}</span>
             <div class="ingredients px-4">
                 <h4 class="fw-bold">Ingredients 
                     <button class="btn btn-light" (click)="modal.open()"><i class="fas fa-plus"></i></button>
@@ -20,21 +13,10 @@
                             <ul class="list-unstyled" >
                                 <li class="my-1" *ngFor="let item of ingredients">
                                     <div class="input-group mb-3" *ngIf="item.editing; else ingredient">
-                                        <p>{{item.ingredient.name}}</p>
-                                        <select class="form-select" type="text" [(ngModel)]="item.unit">
-                                            <option *ngFor="let unit of units" [value]="unit">{{unit}}</option>
-                                        </select>
-                                        <input class="form-control" type="text" [(ngModel)]="item.amount" placeholder="Amount"/>
-                                        <button class="btn btn-secondary mx-1 rounded">
-                                            <i class="fas fa-times"></i>
-                                        </button>
                                     </div>
                                     <ng-template #ingredient>
-                                        1/2 Tbspn {{item.amount}} {{item.unit}} {{item.ingredient.name}}
-                                        <button class="btn btn-primary" (click)="editIngredient(item)">Edit</button>
-                                        <button class="btn btn-warning mx-1 rounded" (click)="addToCart(item)">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </button>
+                                        {{item.ingredient.name}}
+                                        <a class="text-warning" href="javascript:;;" (click)="addToCart(item)"><i class="fas fa-shopping-cart"></i></a>
                                     </ng-template>
                                 </li>
                               </ul>
@@ -47,13 +29,12 @@
                     <button class="btn btn-light" (click)="edit()"><i class="fas fa-pen"></i></button>
                 </h4>
                 <div style="white-space: pre-wrap;" *ngIf="isEditing; else instruction">
-                    <p-editor [(ngModel)]="recipes.instructions" [style]="{'height':'320px'}"></p-editor>
-                    <button class="btn btn-primary" (click)="save(recipes)">Save</button>
-                    <button class="btn btn-secondary" (click)="cancel(recipes)">Cancel</button>
+                    <p-editor [(ngModel)]="recipes.instructions" style="height: 320px"></p-editor>
+                    <button class="btn btn-warning m-2" (click)="save(recipes)">Save</button>
+                    <button class="btn btn-secondary m-2" (click)="cancel(recipes)">Cancel</button>
                 </div>
                 <ng-template #instruction>
-                    <div [innerHTML]='recipes.instructions'>
-
+                    <div class="text-wrap" [innerHTML]='recipes.instructions'>
                     </div>
                 </ng-template>
             </div>

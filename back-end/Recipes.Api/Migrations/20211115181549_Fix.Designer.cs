@@ -9,8 +9,8 @@ using Recipes.Repository.Context;
 namespace Recipes.Api.Migrations
 {
     [DbContext(typeof(RecipesContext))]
-    [Migration("20211111211337_AddIngredientCat")]
-    partial class AddIngredientCat
+    [Migration("20211115181549_Fix")]
+    partial class Fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,28 @@ namespace Recipes.Api.Migrations
                     b.HasIndex("Recipesid");
 
                     b.ToTable("IngredientDomainRecipesDomain");
+                });
+
+            modelBuilder.Entity("Recipes.Repository.Domain.CartItemDomain", b =>
+                {
+                    b.Property<long?>("Key")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("IngredientId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<long?>("Quantity")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Key");
+
+                    b.HasIndex("IngredientId");
+
+                    b.ToTable("CartItem");
                 });
 
             modelBuilder.Entity("Recipes.Repository.Domain.IngredientDomain", b =>
@@ -95,11 +117,17 @@ namespace Recipes.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Amount")
+                        .HasColumnType("longtext");
+
                     b.Property<long>("IngredientId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("RecipesId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Unit")
+                        .HasColumnType("longtext");
 
                     b.HasKey("id");
 
@@ -125,16 +153,27 @@ namespace Recipes.Api.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Recipes.Repository.Domain.CartItemDomain", b =>
+                {
+                    b.HasOne("Recipes.Repository.Domain.IngredientDomain", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ingredient");
+                });
+
             modelBuilder.Entity("Recipes.Repository.Domain.RecipesIngredientDomain", b =>
                 {
                     b.HasOne("Recipes.Repository.Domain.IngredientDomain", "Ingredient")
-                        .WithMany("RecipesIngredients")
+                        .WithMany()
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Recipes.Repository.Domain.RecipesDomain", "Recipes")
-                        .WithMany("RecipesIngredients")
+                        .WithMany()
                         .HasForeignKey("RecipesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -142,16 +181,6 @@ namespace Recipes.Api.Migrations
                     b.Navigation("Ingredient");
 
                     b.Navigation("Recipes");
-                });
-
-            modelBuilder.Entity("Recipes.Repository.Domain.IngredientDomain", b =>
-                {
-                    b.Navigation("RecipesIngredients");
-                });
-
-            modelBuilder.Entity("Recipes.Repository.Domain.RecipesDomain", b =>
-                {
-                    b.Navigation("RecipesIngredients");
                 });
 #pragma warning restore 612, 618
         }

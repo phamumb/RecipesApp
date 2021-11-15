@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Recipes.Infrastructure.Extensions;
+using Recipes.Models.Enums;
 using Recipes.Repository.Context;
 using Recipes.Repository.Domain;
 
@@ -47,23 +48,35 @@ namespace Recipes.Logic.Services
             return true;
         }
 
-        public bool AddNewIngredient(IngredientDomain model)
+        public bool AddUpdateIngredient(IngredientDomain model)
         {
-            _context.Ingredients.Add(model);
+            if (model.id != 0)
+            {
+                _context.Ingredients.Update(model);
+            }
+            else
+            {
+                _context.Ingredients.Add(model);
+            }
             _context.SaveChanges();
             return true;
         }
 
+        public IngredientDomain GetSingleIngredient(long id)
+        {
+            return _context.Ingredients.Where(x => x.id == id).FirstOrDefault();
+        }
+
         public dynamic GetAllIngredients()
         {
-            return _context.Ingredients.Where(x => true).AsEnumerable().GroupBy(x => x.Category).Select(x =>
-            {
-                return new
-                {
-                    Category = x.Key,
-                    CategoryName = x.Key.GetEnumDescription(),
-                    Ingredients = x.ToList()
-                };
+            return _context.Ingredients.Where(x => true).AsEnumerable();
+        }
+
+        public dynamic GetIngredientCategories()
+        {
+            return Enum.GetValues<IngredientCategoryEnum>().Select(x => new {
+                Code = x,
+                Name = x.GetEnumDescription()
             });
         }
 
@@ -85,14 +98,14 @@ namespace Recipes.Logic.Services
 
         public bool AddToCart(CartItemDomain model)
         {
-            _context.CartDomain.Add(model);
+            _context.CartItem.Add(model);
             _context.SaveChanges();
             return true;
         }
 
         public IEnumerable<CartItemDomain> GetCartItems()
         {
-            return _context.CartDomain.Where(x => x.IsDeleted == false).ToList();
+            return _context.CartItem.Where(x => x.IsDeleted == false).ToList();
         }
     }
 }

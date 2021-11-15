@@ -8,7 +8,7 @@ namespace Recipes.Repository.Context
         public DbSet<RecipesDomain> Recipes { get; set; }
         public DbSet<IngredientDomain> Ingredients { get; set; }
         public DbSet<RecipesIngredientDomain> RecipesIngredients { get; set; }
-        public DbSet<CartItemDomain> CartDomain { get; set; }
+        public DbSet<CartItemDomain> CartItem { get; set; }
         public RecipesContext(DbContextOptions<RecipesContext> options) : base(options)
         {
         }

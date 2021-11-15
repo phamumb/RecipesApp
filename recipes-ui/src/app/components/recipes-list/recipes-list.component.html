@@ -1,6 +1,6 @@
 <div class="container-fluid p-2">
-  <button class="btn btn-primary float-left" (click)="createRecipesModal.open()">New Recipes</button>
-  <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+  <button class="btn btn-warning float-left" (click)="createRecipesModal.open()">New Recipes</button>
+  <div class="d-flex flex-row flex-wrap bd-highlight gap-3">
     <div class="card shadow-sm m-3" style="max-width: 540px;" *ngFor="let item of recipes$ | async" (click)="showRecipes(item)">
       <div class="row g-0">
         <div class="col-md-4">

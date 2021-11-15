@@ -1,14 +1,12 @@
 <nav class="navbar sticky-top navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-      Market List
+      <i class="fas fa-utensils text-warning fa-2x"></i>
+      Recipes
     </a>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Market List</h5>
@@ -18,16 +16,16 @@
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <div routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/">Home</a>
+              <a class="nav-link" routerLink="/"><i class="fas fa-home"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/recipes">Recipes</a>
+              <a class="nav-link" routerLink="/recipes"><i class="fas fa-mortar-pestle"></i> Recipes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/ingredients">Ingredients</a>
+              <a class="nav-link" routerLink="/ingredients"><i class="fas fa-pepper-hot"></i> Ingredients</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/cart">Cart</a>
+              <a class="nav-link" routerLink="/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
             </li>
           </div>
         </ul>

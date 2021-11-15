@@ -58,15 +58,35 @@ export class RecipesContextService {
     return this.api.updateRecipes(model);
   }
 
-  addToCart(ingredient) {
-    var item = {
-      ingredientId: ingredient.id,
-      quantity : 1
+  getCartItems() {
+    let items = JSON.parse(localStorage.getItem('cart'))
+    if(items != null){
+      this.cart$.next(items);
     }
-    this.api.addToCart(item).subscribe(res => {
-      if(res){
-        
-      }
-    })
+  }
+
+  removeCartItem(index){
+    let items = this.cart$.value;
+    items.splice(index, 1);
+    this.saveToCart(items);
+  }
+
+  addToCart(ingredient) {
+    let items = this.cart$.value;
+    let existedItem = items.find(x => x.ingredientId == ingredient.id);
+    if(existedItem){
+      existedItem.quantity += 1;
+    }else{
+      items.push({
+        ingredientId: ingredient.id,
+        quantity: 1,
+      });
+    }
+    this.saveToCart(items);
+  }
+
+  saveToCart(items){
+    this.cart$.next(items);
+    localStorage.setItem('cart', JSON.stringify(items));
   }
 }

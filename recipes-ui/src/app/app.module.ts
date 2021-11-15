@@ -28,6 +28,8 @@ import { IngredientsPageComponent } from './pages/ingredients-page/ingredients-p
 import { RecipesEditPageComponent } from './pages/recipes-edit-page/recipes-edit-page.component';
 import { RecipesPageComponent } from './pages/recipes-page/recipes-page.component';
 import { AppApiService } from './services/app-api.service';
+import { CartComponent } from './components/cart/cart.component';
+import { IngredientPipe } from './pipes/ingredient.pipe';
 
 
 
@@ -48,7 +50,9 @@ import { AppApiService } from './services/app-api.service';
     IngredientModalComponent,
     RecipesEditPageComponent,
     RecipesDetailIconComponent,
-    AddIngredientModalComponent
+    AddIngredientModalComponent,
+    CartComponent,
+    IngredientPipe
   ],
   imports: [
     BrowserModule,

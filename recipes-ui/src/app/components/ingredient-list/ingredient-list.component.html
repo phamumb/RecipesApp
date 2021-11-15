@@ -1,17 +1,30 @@
 <div class="container-fluid p-2">
-    <button class="btn btn-primary float-left mb-2" (click)="openModal()">New Ingredient</button><br>
-      <div class="d-inline-flex" *ngFor="let item of items$ | async">
-        <div class="card rounded-3 shadow-sm border-0 me-3" style="width: 16rem;" *ngFor="let ingredient of item.ingredients">
-          <div class="card-body">
-            <div class="float-right" style="width: 100%;">
-            </div>
-            <img src="{{ingredient.imageUrl}}" class="card-img-top">
-            <h5 class="card-title">{{ingredient.name}}</h5>
-            <p class="card-text">
-                {{ingredient.note}}
-            </p>
+    <button class="btn btn-warning float-left mb-2" (click)="openModal(); modal.model = {}">New Ingredient</button><br>
+    <div class="row gap-2">
+      <div class="col-lg-3">
+        <input type="text" class="form-control" placeholder="Type to search..." (input)="searchIngredient($event.target.value)">
+      </div>
+      <div class="col-lg-3">
+        <select class="form-select" (input)="filterCategory($event.target.value)">
+          <option value="">All Categories</option>
+          <option [value]="category.code" *ngFor="let category of categories$ | async">{{category.name}}</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="d-inline-flex flex-wrap gap-2">
+      <div class="card rounded-3 shadow-sm border-0 m-2" style="max-width: 13rem;" *ngFor="let ingredient of items$ | async" 
+      (click)="modal.open(); modal.model = ingredient">
+        <div class="card-body">
+          <div class="float-right" style="width: 100%;">
           </div>
+          <img src="{{ingredient.imageUrl}}" class="card-img-top">
+          <h5 class="card-title text-center my-1">{{ingredient.name}}</h5>
+          <p class="card-text">
+              {{ingredient.note}}
+          </p>
         </div>
       </div>
+    </div>
 </div>
 <app-ingredient-modal #modal></app-ingredient-modal>

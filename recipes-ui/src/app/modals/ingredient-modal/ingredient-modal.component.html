@@ -6,35 +6,24 @@
       </div>
     <div class="modal-body">
       <div class="container">
+        <div class="d-grid gap-3">
           <img class="rounded mx-auto d-block" alt="" [src]="model.imageUrl" style="width: 200px; height: 200px;" *ngIf="model.imageUrl"><br>
-          <label id="name">Name</label>
-          <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Ingredient's name" aria-describedby="name" [(ngModel)]="model.name">
-          </div>
-
-          <label id="name">Location</label>
-          <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Where to buy ?" aria-describedby="location" [(ngModel)]="model.location">
-          </div>
-
-          <label id="name">Note</label>
-          <div class="input-group mb-3">
-              <textarea class="form-control" placeholder="Note/Description" aria-describedby="note" [(ngModel)]="model.note" ></textarea>
-          </div>
-
+          <input type="text" class="form-control" placeholder="Ingredient's name" aria-describedby="name" [(ngModel)]="model.name">
+          <input type="text" class="form-control" placeholder="Where to buy ?" aria-describedby="location" [(ngModel)]="model.location">
+          <textarea class="form-control" placeholder="Note/Description" aria-describedby="note" [(ngModel)]="model.note" ></textarea>
           <select class="form-select" aria-label="Default select example" [(ngModel)]="model.unit">
             <option value='' selected>Select a Unit</option>
             <option [value]="unit" *ngFor="let unit of units" >{{unit}}</option>
           </select>
-
-          <label>Picture</label>
-          <div class="input-group mb-3">
-            <input type="url" class="form-control" aria-describedby="imageUrl" [(ngModel)]="model.imageUrl" />
+          <input type="url" class="form-control" aria-describedby="imageUrl" [(ngModel)]="model.imageUrl" placeholder="Image Url" />
         </div>
       </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-warning" (click)="modal.dismiss('Cross click')">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="create()">Create</button>
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Cancel</button>
+        <button type="button" class="btn btn-warning" (click)="createUpdate()" *ngIf="model.id; else updateBtn">Update</button>
+        <ng-template #updateBtn>
+          <button type="button" class="btn btn-warning" (click)="createUpdate()">Create</button>
+        </ng-template>
     </div>
   </ng-template>

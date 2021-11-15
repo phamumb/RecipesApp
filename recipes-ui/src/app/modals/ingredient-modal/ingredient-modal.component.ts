@@ -1,5 +1,5 @@
 import { IngredientContextService } from '../../services/ingredient-context.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,9 +8,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./ingredient-modal.component.scss']
 })
 export class IngredientModalComponent implements OnInit {
+  @Input() model: any = {};
   @ViewChild('modal') modal: any;
-  model: any = {
-  }
 
   units = [
     'Bottle',
@@ -31,8 +30,8 @@ export class IngredientModalComponent implements OnInit {
     });
   }
 
-  create(){
-    this.context.createNewIngredient(this.model).subscribe(res => {
+  createUpdate(){
+    this.context.createUpdateIngredient(this.model).subscribe(res => {
       if(res){
         // close and reset model.
         this.modalService.dismissAll();

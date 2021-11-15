@@ -3,10 +3,10 @@
       <div class="row">
         <div class="col-sm-12">
             <div class="input-group mb-3">
-                <select class="form-select" [(ngModel)]="model" (ngModelChange)="onCategoryChange()">
+                <select class="form-select" [(ngModel)]="model" (ngModelChange)="onCategoryChange($event.target.value)">
                     <option value=''>Categories</option>
-                    <option *ngFor="let category of list$ | async">
-                        {{category.categoryName}}
+                    <option [value]='category.code' *ngFor="let category of list$ | async">
+                        {{category.name}}
                     </option>
                 </select>
                 
@@ -17,38 +17,9 @@
         <div class="col-sm-12">
             <div class="input-group">
                 <p-multiSelect [options]="ingredients" [(ngModel)]="selectedIngredients" optionLabel="name" defaultLabel="Select an Ingredient"></p-multiSelect>
-                <button class="btn btn-primary" (click)="addIngredients()">Add</button>
+                <button class="btn btn-warning" (click)="addIngredients()">Add</button>
             </div>
         </div>
       </div>
-    <!-- <div class="container">
-          <div class="row">
-              <div class="col-lg-12 mb-2">
-                  <select class="form-control">
-                      <option value="">All</option>
-                      <option [value]="item.category" *ngFor="let item of list$ | async">{{item.categoryName}}</option>
-                  </select>
-              </div>
-              <div class="col-lg-12" *ngFor="let item of list$ | async">
-                  <div class="row m-2" *ngFor="let ingredient of item.ingredients">
-                      <div class="col">{{ingredient.name}}</div>
-                      <div class="col">
-                          <select class="form-control" [(ngModel)]="model.unit">
-                              <option value="">Units</option>
-                              <option [value]="unit" *ngFor="let unit of units">{{unit}}</option>
-                          </select>
-                      </div>
-                      <div class="col">
-                          <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="model.amount">
-                      </div>
-                      <div class="col">
-                          <button class="btn btn-warning" (click)="addIngredient(ingredient)">
-                              <i class="fas fa-plus"></i>
-                          </button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div> -->
   </div>
 </ng-template>

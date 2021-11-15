@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { RecipesContextService } from './../../services/recipes-context.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-container.component.scss']
 })
 export class AppContainerComponent implements OnInit {
-
-  constructor() { }
+  constructor(private context: RecipesContextService) { }
 
   ngOnInit() {
   }

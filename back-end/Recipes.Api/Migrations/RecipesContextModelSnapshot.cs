@@ -32,7 +32,7 @@ namespace Recipes.Api.Migrations
                     b.ToTable("IngredientDomainRecipesDomain");
                 });
 
-            modelBuilder.Entity("Recipes.Repository.Domain.CartDomain", b =>
+            modelBuilder.Entity("Recipes.Repository.Domain.CartItemDomain", b =>
                 {
                     b.Property<long?>("Key")
                         .ValueGeneratedOnAdd()
@@ -41,6 +41,9 @@ namespace Recipes.Api.Migrations
                     b.Property<long>("IngredientId")
                         .HasColumnType("bigint");
 
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<long?>("Quantity")
                         .HasColumnType("bigint");
 
@@ -48,7 +51,7 @@ namespace Recipes.Api.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.ToTable("CartDomain");
+                    b.ToTable("CartItem");
                 });
 
             modelBuilder.Entity("Recipes.Repository.Domain.IngredientDomain", b =>
@@ -148,7 +151,7 @@ namespace Recipes.Api.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Recipes.Repository.Domain.CartDomain", b =>
+            modelBuilder.Entity("Recipes.Repository.Domain.CartItemDomain", b =>
                 {
                     b.HasOne("Recipes.Repository.Domain.IngredientDomain", "Ingredient")
                         .WithMany()

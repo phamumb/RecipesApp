@@ -12,8 +12,10 @@ export class IngredientListComponent implements OnInit {
   @ViewChild('modal') modal: IngredientModalComponent | undefined;
   amount: string = '';
   items$: Observable<any>;
+  categories$: Observable<any>;
   constructor(private context: IngredientContextService) {
     this.items$ = this.context.list$;
+    this.categories$ = this.context.getCategories();
   }
 
   ngOnInit(): void {
@@ -23,8 +25,12 @@ export class IngredientListComponent implements OnInit {
     this.modal?.open();
   }
 
-  addToCart(item: any){
-    console.log(item)
+  searchIngredient(value){
+    this.context.search(value);
+  }
+
+  filterCategory(value){
+    this.context.searchCategory(value);
   }
 
 }

@@ -41,8 +41,16 @@ export class AppApiService {
   }
 
   // Ingredients
-  createNewIngredient(model: any) {
-    return this.http.post(`${this.url}/AddNewIngredient`, model);
+  createUpdateIngredient(model: any) {
+    return this.http.post(`${this.url}/AddUpdateIngredient`, model);
+  }
+
+  getSingleIngredient(id) {
+    return this.http.get(`${this.url}/GetSingleIngredient?id=${id}`);
+  }
+
+  getIngredientCategories(){
+    return this.http.get(`${this.url}/GetIngredientCategories`);
   }
 
   // Cart

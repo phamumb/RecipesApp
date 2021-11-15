@@ -50,9 +50,9 @@ namespace Recipes.Api.Controllers
         // Ingredients
 
         [HttpPost]
-        public bool AddNewIngredient([FromBody] IngredientDomain model)
+        public bool AddUpdateIngredient([FromBody] IngredientDomain model)
         {
-            return _appService.AddNewIngredient(model);
+            return _appService.AddUpdateIngredient(model);
         }
 
         [HttpPost]
@@ -65,6 +65,24 @@ namespace Recipes.Api.Controllers
         public dynamic GetAllIngredients()
         {
             return _appService.GetAllIngredients();
+        }
+
+        [HttpGet]
+        public dynamic GetSingleIngredient(long id)
+        {
+            return _appService.GetSingleIngredient(id);
+        }
+
+        [HttpGet]
+        public dynamic GetIngredientCategories()
+        {
+            return _appService.GetIngredientCategories();
+        }
+
+        [HttpPost]
+        public bool AddToCart(CartItemDomain model)
+        {
+            return _appService.AddToCart(model);
         }
 
         [HttpGet]

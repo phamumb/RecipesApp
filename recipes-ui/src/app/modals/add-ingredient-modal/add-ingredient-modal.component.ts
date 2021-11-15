@@ -21,8 +21,7 @@ export class AddIngredientModalComponent implements OnInit {
     private recipesContext: RecipesContextService) { }
 
   ngOnInit(): void {
-    this.list$ = this.ingredientContext.list$;
-    this.ingredientContext.getAllIngredients();
+    this.list$ = this.ingredientContext.getCategories();
   }
 
   open() {
@@ -40,7 +39,7 @@ export class AddIngredientModalComponent implements OnInit {
         ingredientId: x.code
       }
     })
-    
+
     this.recipesContext.addRecipesIngredients(ingredients).subscribe(x => {
       this.recipesContext.refreshRecipes();
       this.modalService.dismissAll();
@@ -48,14 +47,6 @@ export class AddIngredientModalComponent implements OnInit {
   }
 
   onCategoryChange() {
-    var list = this.ingredientContext.list$.value;
-    let result = list.find((x: any) => x.categoryName == this.model);
-    this.ingredients = result.ingredients.map(x => {
-      return {
-        code: x.id,
-        name: x.name
-      }
-    })
   }
 
 
